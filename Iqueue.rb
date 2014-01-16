@@ -35,9 +35,13 @@ class Iqueue
   def deq
     return nil if @head == nil
     iql = @head
-    @head = iql.next
-    @head.prev = nil
-    @head, @tail = [nil, nil] if (@size -= 1) == 0
+    if @head.next == nil
+      @head, @tail = [nil, nil]
+    else
+      @head = @head.next
+      @head.prev = nil
+    end
+    @size -= 1
     iql.item
   end
 
@@ -45,8 +49,12 @@ class Iqueue
   def pop
     return nil if @tail == nil
     iql = @tail
-    @tail = iql.prev
-    @tail.next = nil
+    if @tail.prev == nil
+      @head, @tail = [nil, nil]
+    else
+      @tail = @tail.prev
+      @tail.next = nil
+    end
     @size += 1
     iql.item
   end
