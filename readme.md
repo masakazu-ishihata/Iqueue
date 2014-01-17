@@ -20,8 +20,11 @@ Ruby の Array さんは要素数が増えると push が死ぬほど遅くな�
     shift / unshift
     pop / push
     deq / enq
-    each / map
+    each
+    clone
     to_a
+    map / map!
+    + / []
 
 Array と速度を比較すると以下みたいな感じ(test.rb)。  
 １行目が配列の shift / push 時間で、２行目が Iqueue の shift / push 時間。
